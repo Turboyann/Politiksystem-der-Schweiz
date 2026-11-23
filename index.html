@@ -211,6 +211,130 @@ footer {
     display: none;
   }
 }
+
+
+/* VOLKSABSTIMMUNG */
+
+.vote-section {
+  margin-top: 35px;
+  text-align: center;
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 3px 15px #00000010;
+}
+
+.vote-card {
+  max-width: 650px;
+  margin: 25px auto 0;
+  padding: 25px;
+  background: #f3f5f8;
+  border-radius: 15px;
+  text-align: left;
+}
+
+.vote-card h2 {
+  color: #c92332;
+  margin-top: 20px;
+  line-height: 1.4;
+}
+
+.vote-options {
+  display: grid;
+  gap: 12px;
+  margin: 25px 0;
+}
+
+.vote-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: white;
+  border: 2px solid #dce1e8;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.vote-option:hover {
+  border-color: #c92332;
+  background: #fff5f5;
+}
+
+.vote-option input {
+  width: 18px;
+  height: 18px;
+  accent-color: #c92332;
+}
+
+.vote-option span {
+  font-weight: bold;
+}
+
+.vote-button {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  background: #c92332;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.vote-button:hover {
+  background: #a91d2a;
+}
+
+.result {
+  display: grid;
+  grid-template-columns: 95px 1fr 45px;
+  align-items: center;
+  gap: 10px;
+  margin: 18px 0;
+}
+
+.bar {
+  height: 15px;
+  background: #dce1e8;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  width: 0;
+  border-radius: 20px;
+  transition: width 1s ease;
+}
+
+.yes { background: #269c69; }
+.no { background: #df4545; }
+.abstain { background: #8993a3; }
+
+#voteMessage {
+  font-weight: bold;
+  color: #269c69;
+}
+
+#voteWinner {
+  margin-top: 25px;
+  color: #c92332;
+}
+
+@media (max-width: 500px) {
+  .result {
+    grid-template-columns: 75px 1fr 40px;
+    gap: 6px;
+  }
+
+  .vote-section {
+    padding: 18px;
+  }
+}
+
 </style>
 </head>
 
@@ -595,6 +719,92 @@ footer {
 
 </div>
 
+<section class="vote-section">
+
+  <h2>🗳️ Jetzt bist du an der Reihe!</h2>
+
+  <p>
+    Du hast das Schweizer Politiksystem kennengelernt.
+    Jetzt kannst du selbst abstimmen!
+  </p>
+
+  <div class="vote-card">
+
+    <span class="tag">Simulierte Volksabstimmung</span>
+
+    <h2>Soll der Bund den öffentlichen Verkehr stärker fördern?</h2>
+
+    <p>
+      Entscheide selbst. Wähle eine Antwort und gib
+      deine Stimme ab.
+    </p>
+
+    <div class="vote-options">
+
+      <label class="vote-option">
+        <input type="radio" name="vote" value="Ja">
+        <span>🟢 Ja</span>
+      </label>
+
+      <label class="vote-option">
+        <input type="radio" name="vote" value="Nein">
+        <span>🔴 Nein</span>
+      </label>
+
+      <label class="vote-option">
+        <input type="radio" name="vote" value="Enthaltung">
+        <span>⚪ Enthaltung</span>
+      </label>
+
+    </div>
+
+    <button class="vote-button" onclick="submitVote()">
+      Stimme abgeben
+    </button>
+
+    <p id="voteMessage"></p>
+
+    <div id="voteResults" style="display:none;">
+
+      <h3>📊 Abstimmungsresultat</h3>
+
+      <div class="result">
+        <span>Ja</span>
+        <div class="bar">
+          <div id="yesBar" class="fill yes"></div>
+        </div>
+        <strong id="yesPercent">0%</strong>
+      </div>
+
+      <div class="result">
+        <span>Nein</span>
+        <div class="bar">
+          <div id="noBar" class="fill no"></div>
+        </div>
+        <strong id="noPercent">0%</strong>
+      </div>
+
+      <div class="result">
+        <span>Enthaltung</span>
+        <div class="bar">
+          <div id="abstainBar" class="fill abstain"></div>
+        </div>
+        <strong id="abstainPercent">0%</strong>
+      </div>
+
+      <h3 id="voteWinner"></h3>
+
+      <p class="hint">
+        Die angezeigten Ergebnisse sind eine
+        Simulation und keine echten Abstimmungsdaten.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
 <footer>
   Schweizer Politiksystem · Eine interaktive Reise durch die Demokratie 🇨🇭
 </footer>
@@ -824,6 +1034,71 @@ function showInfo(title, category) {
     block: "nearest"
   });
 
+}
+
+function submitVote() {
+
+  const selected = document.querySelector(
+    'input[name="vote"]:checked'
+  );
+
+  if (!selected) {
+    document.getElementById("voteMessage").textContent =
+      "Bitte wähle zuerst eine Antwort aus!";
+    return;
+  }
+
+  const vote = selected.value;
+
+  // Beispielwerte für die simulierte Abstimmung
+  const results = {
+    Ja: 58,
+    Nein: 32,
+    Enthaltung: 10
+  };
+
+  document.getElementById("voteMessage").textContent =
+    "Danke! Deine Stimme für " + vote +
+    " wurde in dieser Simulation registriert.";
+
+  // Abstimmungsergebnisse anzeigen
+  document.getElementById("voteResults").style.display =
+    "block";
+
+  document.getElementById("yesPercent").textContent =
+    results.Ja + "%";
+
+  document.getElementById("noPercent").textContent =
+    results.Nein + "%";
+
+  document.getElementById("abstainPercent").textContent =
+    results.Enthaltung + "%";
+
+  // Balken animieren
+  setTimeout(() => {
+
+    document.getElementById("yesBar").style.width =
+      results.Ja + "%";
+
+    document.getElementById("noBar").style.width =
+      results.Nein + "%";
+
+    document.getElementById("abstainBar").style.width =
+      results.Enthaltung + "%";
+
+  }, 100);
+
+  document.getElementById("voteWinner").textContent =
+    results.Ja > results.No
+      ? "🟢 Die Ja-Stimmen haben die Mehrheit!"
+      : "🔴 Die Nein-Stimmen haben die Mehrheit!";
+
+  // Mehrfachabstimmung verhindern
+  document.querySelectorAll(
+    'input[name="vote"]'
+  ).forEach(input => input.disabled = true);
+
+  document.querySelector(".vote-button").disabled = true;
 }
 
 </script>
