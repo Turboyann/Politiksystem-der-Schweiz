@@ -1,1107 +1,1560 @@
+<!DOCTYPE
+  html>
+<html
+  lang="de">
 
-<!DOCTYPE html>
-<html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Schweizer Politiksystem</title>
+  <meta
+    charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+  <title>
+    Schweizer
+    Politiksystem
+  </title>
 
-<style>
-* {
-  box-sizing: border-box;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f3f5f8;
-  color: #202b3c;
-}
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f3f5f8;
+      color: #202b3c;
+    }
 
-header {
-  background: #c92332;
-  color: white;
-  padding: 30px 20px;
-  text-align: center;
-}
+    header {
+      background: #c92332;
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+    }
 
-header h1 {
-  margin: 0;
-  font-size: 34px;
-}
+    header h1 {
+      margin: 0;
+      font-size: 34px;
+    }
 
-header p {
-  margin-bottom: 0;
-  opacity: 0.9;
-}
+    header p {
+      margin-bottom: 0;
+      opacity: 0.9;
+    }
 
-.container {
-  max-width: 1250px;
-  margin: 30px auto;
-  padding: 20px;
-}
+    .container {
+      max-width: 1250px;
+      margin: 30px auto;
+      padding: 20px;
+    }
 
-.intro {
-  text-align: center;
-  margin-bottom: 30px;
-}
+    .intro {
+      text-align: center;
+      margin-bottom: 30px;
+    }
 
-.main {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  gap: 25px;
-}
+    .main {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 25px;
+    }
 
-.metro, .details {
-  background: white;
-  border-radius: 15px;
-  padding: 25px;
-  box-shadow: 0 3px 15px #00000010;
-}
+    .metro,
+    .details {
+      background: white;
+      border-radius: 15px;
+      padding: 25px;
+      box-shadow: 0 3px 15px #00000010;
+    }
 
-.metro h2, .details h2 {
-  margin-top: 0;
-}
+    .metro h2,
+    .details h2 {
+      margin-top: 0;
+    }
 
-/* U-Bahn-Linien */
+    /* U-Bahn-Linien */
 
-.line {
-  margin: 25px 0;
-  padding-left: 15px;
-  border-left: 7px solid;
-}
+    .line {
+      margin: 25px 0;
+      padding-left: 15px;
+      border-left: 7px solid;
+    }
 
-.red { border-color: #df4545; }
-.blue { border-color: #3286d5; }
-.green { border-color: #269c69; }
-.yellow { border-color: #d49a28; }
-.purple { border-color: #9864c8; }
-.orange { border-color: #e58b35; }
-.teal { border-color: #279b9b; }
-.gray { border-color: #718096; }
+    .red {
+      border-color: #df4545;
+    }
 
-.station {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin: 15px 0;
-  cursor: pointer;
-  padding: 9px;
-  border-radius: 9px;
-  transition: 0.2s;
-}
+    .blue {
+      border-color: #3286d5;
+    }
 
-.station:hover {
-  background: #f0f2f5;
-  transform: translateX(5px);
-}
+    .green {
+      border-color: #269c69;
+    }
 
-.dot {
-  width: 19px;
-  height: 19px;
-  background: white;
-  border: 5px solid currentColor;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
+    .yellow {
+      border-color: #d49a28;
+    }
 
-.station span {
-  font-weight: bold;
-}
+    .purple {
+      border-color: #9864c8;
+    }
 
-.red-text { color: #df4545; }
-.blue-text { color: #3286d5; }
-.green-text { color: #269c69; }
-.yellow-text { color: #d49a28; }
-.purple-text { color: #9864c8; }
-.orange-text { color: #e58b35; }
-.teal-text { color: #279b9b; }
-.gray-text { color: #718096; }
+    .orange {
+      border-color: #e58b35;
+    }
 
-.details {
-  min-height: 400px;
-  align-self: start;
-  position: sticky;
-  top: 20px;
-}
+    .teal {
+      border-color: #279b9b;
+    }
 
-.details h2 {
-  color: #c92332;
-}
+    .gray {
+      border-color: #718096;
+    }
 
-.placeholder {
-  margin-top: 25px;
-  padding: 20px;
-  background: #f3f5f8;
-  border-radius: 10px;
-  line-height: 1.7;
-}
+    .station {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 15px 0;
+      cursor: pointer;
+      padding: 9px;
+      border-radius: 9px;
+      transition: 0.2s;
+    }
 
-.tag {
-  display: inline-block;
-  background: #fce8ea;
-  color: #c92332;
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-size: 13px;
-}
+    .station:hover {
+      background: #f0f2f5;
+      transform: translateX(5px);
+    }
 
-.process-info {
-  background: white;
-  padding: 25px;
-  border-radius: 15px;
-  margin-top: 25px;
-  box-shadow: 0 3px 15px #00000010;
-}
+    .dot {
+      width: 19px;
+      height: 19px;
+      background: white;
+      border: 5px solid currentColor;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
 
-.process-info h2 {
-  margin-top: 0;
-}
+    .station span {
+      font-weight: bold;
+    }
 
-.process-flow {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 20px;
-}
+    .red-text {
+      color: #df4545;
+    }
 
-.process-step {
-  background: #f3f5f8;
-  border: 1px solid #dce1e8;
-  padding: 14px;
-  border-radius: 10px;
-  text-align: center;
-  flex: 1 1 140px;
-  font-weight: bold;
-}
+    .blue-text {
+      color: #3286d5;
+    }
 
-.arrow {
-  font-size: 22px;
-  color: #c92332;
-}
+    .green-text {
+      color: #269c69;
+    }
 
-.hint {
-  color: #687386;
-  font-size: 14px;
-  line-height: 1.6;
-}
+    .yellow-text {
+      color: #d49a28;
+    }
 
-footer {
-  text-align: center;
-  padding: 25px;
-  color: #777;
-}
+    .purple-text {
+      color: #9864c8;
+    }
 
-@media (max-width: 750px) {
-  .main {
-    grid-template-columns: 1fr;
-  }
+    .orange-text {
+      color: #e58b35;
+    }
 
-  header h1 {
-    font-size: 26px;
-  }
+    .teal-text {
+      color: #279b9b;
+    }
 
-  .details {
-    position: static;
-  }
+    .gray-text {
+      color: #718096;
+    }
 
-  .arrow {
-    display: none;
-  }
-}
+    .details {
+      min-height: 400px;
+      align-self: start;
+      position: sticky;
+      top: 20px;
+    }
+
+    .details h2 {
+      color: #c92332;
+    }
+
+    .placeholder {
+      margin-top: 25px;
+      padding: 20px;
+      background: #f3f5f8;
+      border-radius: 10px;
+      line-height: 1.7;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #fce8ea;
+      color: #c92332;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+    }
+
+    .process-info {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      margin-top: 25px;
+      box-shadow: 0 3px 15px #00000010;
+    }
+
+    .process-info h2 {
+      margin-top: 0;
+    }
+
+    .process-flow {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .process-step {
+      background: #f3f5f8;
+      border: 1px solid #dce1e8;
+      padding: 14px;
+      border-radius: 10px;
+      text-align: center;
+      flex: 1 1 140px;
+      font-weight: bold;
+    }
+
+    .arrow {
+      font-size: 22px;
+      color: #c92332;
+    }
+
+    .hint {
+      color: #687386;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #777;
+    }
+
+    @media (max-width: 750px) {
+      .main {
+        grid-template-columns: 1fr;
+      }
+
+      header h1 {
+        font-size: 26px;
+      }
+
+      .details {
+        position: static;
+      }
+
+      .arrow {
+        display: none;
+      }
+    }
 
 
-/* VOLKSABSTIMMUNG */
+    /* VOLKSABSTIMMUNG */
 
-.vote-section {
-  margin-top: 35px;
-  text-align: center;
-  background: white;
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 3px 15px #00000010;
-}
+    .vote-section {
+      margin-top: 35px;
+      text-align: center;
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 3px 15px #00000010;
+    }
 
-.vote-card {
-  max-width: 650px;
-  margin: 25px auto 0;
-  padding: 25px;
-  background: #f3f5f8;
-  border-radius: 15px;
-  text-align: left;
-}
+    .vote-card {
+      max-width: 650px;
+      margin: 25px auto 0;
+      padding: 25px;
+      background: #f3f5f8;
+      border-radius: 15px;
+      text-align: left;
+    }
 
-.vote-card h2 {
-  color: #c92332;
-  margin-top: 20px;
-  line-height: 1.4;
-}
+    .vote-card h2 {
+      color: #c92332;
+      margin-top: 20px;
+      line-height: 1.4;
+    }
 
-.vote-options {
-  display: grid;
-  gap: 12px;
-  margin: 25px 0;
-}
+    .vote-options {
+      display: grid;
+      gap: 12px;
+      margin: 25px 0;
+    }
 
-.vote-option {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 16px;
-  background: white;
-  border: 2px solid #dce1e8;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: 0.2s;
-}
+    .vote-option {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px;
+      background: white;
+      border: 2px solid #dce1e8;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
 
-.vote-option:hover {
-  border-color: #c92332;
-  background: #fff5f5;
-}
+    .vote-option:hover {
+      border-color: #c92332;
+      background: #fff5f5;
+    }
 
-.vote-option input {
-  width: 18px;
-  height: 18px;
-  accent-color: #c92332;
-}
+    .vote-option input {
+      width: 18px;
+      height: 18px;
+      accent-color: #c92332;
+    }
 
-.vote-option span {
-  font-weight: bold;
-}
+    .vote-option span {
+      font-weight: bold;
+    }
 
-.vote-button {
-  width: 100%;
-  padding: 15px;
-  border: none;
-  border-radius: 10px;
-  background: #c92332;
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-}
+    .vote-button {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 10px;
+      background: #c92332;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
 
-.vote-button:hover {
-  background: #a91d2a;
-}
+    .vote-button:hover {
+      background: #a91d2a;
+    }
 
-.result {
-  display: grid;
-  grid-template-columns: 95px 1fr 45px;
-  align-items: center;
-  gap: 10px;
-  margin: 18px 0;
-}
+    .result {
+      display: grid;
+      grid-template-columns: 95px 1fr 45px;
+      align-items: center;
+      gap: 10px;
+      margin: 18px 0;
+    }
 
-.bar {
-  height: 15px;
-  background: #dce1e8;
-  border-radius: 20px;
-  overflow: hidden;
-}
+    .bar {
+      height: 15px;
+      background: #dce1e8;
+      border-radius: 20px;
+      overflow: hidden;
+    }
 
-.fill {
-  height: 100%;
-  width: 0;
-  border-radius: 20px;
-  transition: width 1s ease;
-}
+    .fill {
+      height: 100%;
+      width: 0;
+      border-radius: 20px;
+      transition: width 1s ease;
+    }
 
-.yes { background: #269c69; }
-.no { background: #df4545; }
-.abstain { background: #8993a3; }
+    .yes {
+      background: #269c69;
+    }
 
-#voteMessage {
-  font-weight: bold;
-  color: #269c69;
-}
+    .no {
+      background: #df4545;
+    }
 
-#voteWinner {
-  margin-top: 25px;
-  color: #c92332;
-}
+    .abstain {
+      background: #8993a3;
+    }
 
-@media (max-width: 500px) {
-  .result {
-    grid-template-columns: 75px 1fr 40px;
-    gap: 6px;
-  }
+    #voteMessage {
+      font-weight: bold;
+      color: #269c69;
+    }
 
-  .vote-section {
-    padding: 18px;
-  }
-}
+    #voteWinner {
+      margin-top: 25px;
+      color: #c92332;
+    }
 
-</style>
+    @media (max-width: 500px) {
+      .result {
+        grid-template-columns: 75px 1fr 40px;
+        gap: 6px;
+      }
+
+      .vote-section {
+        padding: 18px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
-  <h1>🇨🇭 Schweizer Politiksystem</h1>
-  <p>Eine Reise durch die Schweizer Demokratie</p>
-</header>
-
-<div class="container">
-
-  <div class="intro">
-    <h2>Willkommen an Bord!</h2>
+  <header>
+    <h1>
+      🇨🇭
+      Schweizer
+      Politiksystem
+    </h1>
     <p>
-      Entdecke das politische System der Schweiz.
-      Klicke auf eine Haltestelle, um mehr zu erfahren.
+      Eine
+      Reise
+      durch
+      die
+      Schweizer
+      Demokratie
     </p>
-  </div>
+  </header>
 
-  <div class="main">
+  <div
+    class="container">
 
-    <!-- U-BAHN-KARTE -->
-
-    <section class="metro">
-
-      <h2>🚇 Politische Metro</h2>
-
-      <!-- LEGISLATIVE -->
-
-      <div class="line red">
-        <h3>🔴 Legislative – Das Parlament</h3>
-
-        <div class="station red-text"
-          onclick="showInfo('Nationalrat','Legislative')">
-          <div class="dot"></div>
-          <span>Nationalrat</span>
-        </div>
-
-        <div class="station red-text"
-          onclick="showInfo('Ständerat','Legislative')">
-          <div class="dot"></div>
-          <span>Ständerat</span>
-        </div>
-
-        <div class="station red-text"
-          onclick="showInfo('Gesetzesberatung','Legislative')">
-          <div class="dot"></div>
-          <span>Gesetzesberatung</span>
-        </div>
-
-        <div class="station red-text"
-          onclick="showInfo('Gesetzesbeschluss','Legislative')">
-          <div class="dot"></div>
-          <span>Gesetzesbeschluss</span>
-        </div>
-
-        <div class="station red-text"
-          onclick="showInfo('Interessenaggregation','Prozessfunktionen')">
-          <div class="dot"></div>
-          <span>Interessenaggregation</span>
-        </div>
-
-        <div class="station red-text"
-          onclick="showInfo('Policy-making','Prozessfunktionen')">
-          <div class="dot"></div>
-          <span>Policy-making</span>
-        </div>
-      </div>
-
-      <!-- EXEKUTIVE -->
-
-      <div class="line blue">
-        <h3>🔵 Exekutive – Die Regierung</h3>
-
-        <div class="station blue-text"
-          onclick="showInfo('Bundesrat','Exekutive')">
-          <div class="dot"></div>
-          <span>Bundesrat</span>
-        </div>
-
-        <div class="station blue-text"
-          onclick="showInfo('Bundesverwaltung','Exekutive')">
-          <div class="dot"></div>
-          <span>Bundesverwaltung</span>
-        </div>
-
-        <div class="station blue-text"
-          onclick="showInfo('Umsetzung der Gesetze','Exekutive')">
-          <div class="dot"></div>
-          <span>Gesetze umsetzen</span>
-        </div>
-
-        <div class="station blue-text"
-          onclick="showInfo('Botschaft Bundesrat','Politischer Entscheidungsprozess')">
-          <div class="dot"></div>
-          <span>Botschaft BR</span>
-        </div>
-
-        <div class="station blue-text"
-          onclick="showInfo('Implementierung','Prozessfunktionen')">
-          <div class="dot"></div>
-          <span>Implementierung</span>
-        </div>
-      </div>
-
-      <!-- JUDIKATIVE -->
-
-      <div class="line green">
-        <h3>🟢 Judikative – Die Gerichte</h3>
-
-        <div class="station green-text"
-          onclick="showInfo('Kantonsgerichte','Judikative')">
-          <div class="dot"></div>
-          <span>Kantonsgerichte</span>
-        </div>
-
-        <div class="station green-text"
-          onclick="showInfo('Bundesgericht','Judikative')">
-          <div class="dot"></div>
-          <span>Bundesgericht</span>
-        </div>
-
-        <div class="station green-text"
-          onclick="showInfo('Überprüfung','Prozessfunktionen')">
-          <div class="dot"></div>
-          <span>Überprüfung und Rechtsprechung</span>
-        </div>
-      </div>
-
-      <!-- DIREKTE DEMOKRATIE -->
-
-      <div class="line yellow">
-        <h3>🟡 Direkte Demokratie</h3>
-
-        <div class="station yellow-text"
-          onclick="showInfo('Volksinitiative','Direkte Demokratie')">
-          <div class="dot"></div>
-          <span>Volksinitiative</span>
-        </div>
-
-        <div class="station yellow-text"
-          onclick="showInfo('Referendum','Direkte Demokratie')">
-          <div class="dot"></div>
-          <span>Referendum</span>
-        </div>
-
-        <div class="station yellow-text"
-          onclick="showInfo('Volksabstimmung','Direkte Demokratie')">
-          <div class="dot"></div>
-          <span>Volksabstimmung</span>
-        </div>
-
-        <div class="station yellow-text"
-          onclick="showInfo('Indirekter Gegenvorschlag','Direkte Demokratie')">
-          <div class="dot"></div>
-          <span>Indirekter Gegenvorschlag</span>
-        </div>
-
-        <div class="station yellow-text"
-          onclick="showInfo('Korrektur-Initiative','Direkte Demokratie')">
-          <div class="dot"></div>
-          <span>Korrektur-Initiative</span>
-        </div>
-
-        <div class="station yellow-text"
-          onclick="showInfo('GSoA','Direkte Demokratie')">
-          <div class="dot"></div>
-          <span>GSoA</span>
-        </div>
-      </div>
-
-      <!-- FÖDERALISMUS -->
-
-      <div class="line purple">
-        <h3>🟣 Föderalismus</h3>
-
-        <div class="station purple-text"
-          onclick="showInfo('Bund','Föderalismus')">
-          <div class="dot"></div>
-          <span>Bund</span>
-        </div>
-
-        <div class="station purple-text"
-          onclick="showInfo('Kantone','Föderalismus')">
-          <div class="dot"></div>
-          <span>Kantone</span>
-        </div>
-
-        <div class="station purple-text"
-          onclick="showInfo('Gemeinden','Föderalismus')">
-          <div class="dot"></div>
-          <span>Gemeinden</span>
-        </div>
-      </div>
-
-      <!-- POLITISCHE AKTEURE -->
-
-      <div class="line orange">
-        <h3>🟠 Politische Akteure und Interessen</h3>
-
-        <div class="station orange-text"
-          onclick="showInfo('Bürgerschaft','Politische Akteure')">
-          <div class="dot"></div>
-          <span>Bürgerschaft</span>
-        </div>
-
-        <div class="station orange-text"
-          onclick="showInfo('Parteien','Politische Akteure')">
-          <div class="dot"></div>
-          <span>Parteien</span>
-        </div>
-
-        <div class="station orange-text"
-          onclick="showInfo('Interessengruppen','Politische Akteure')">
-          <div class="dot"></div>
-          <span>Interessengruppen</span>
-        </div>
-
-        <div class="station orange-text"
-          onclick="showInfo('Intermediäre Akteure','Politische Akteure')">
-          <div class="dot"></div>
-          <span>Intermediäre Akteure</span>
-        </div>
-
-        <div class="station orange-text"
-          onclick="showInfo('Medienberichte','Politische Akteure')">
-          <div class="dot"></div>
-          <span>Medien</span>
-        </div>
-
-        <div class="station orange-text"
-          onclick="showInfo('Interessenartikulation','Prozessfunktionen')">
-          <div class="dot"></div>
-          <span>Interessenartikulation</span>
-        </div>
-      </div>
-
-      <!-- POLITISCHER ENTSCHEIDUNGSPROZESS -->
-
-      <div class="line teal">
-        <h3>🩵 Politischer Entscheidungsprozess</h3>
-
-        <div class="station teal-text"
-          onclick="showInfo('Motion SPK-SR','Politischer Entscheidungsprozess')">
-          <div class="dot"></div>
-          <span>Motion SPK-SR</span>
-        </div>
-
-        <div class="station teal-text"
-          onclick="showInfo('Beratung NR/SR','Politischer Entscheidungsprozess')">
-          <div class="dot"></div>
-          <span>Beratung NR/SR</span>
-        </div>
-
-        <div class="station teal-text"
-          onclick="showInfo('Stände- und Nationalrat','Politischer Entscheidungsprozess')">
-          <div class="dot"></div>
-          <span>Stände- und Nationalrat</span>
-        </div>
-
-        <div class="station teal-text"
-          onclick="showInfo('Policy-making','Prozessfunktionen')">
-          <div class="dot"></div>
-          <span>Entscheidungsfindung</span>
-        </div>
-      </div>
-
-      <!-- INPUTS UND OUTPUTS -->
-
-      <div class="line gray">
-        <h3>⚪ Politische Umwelt und System</h3>
-
-        <div class="station gray-text"
-          onclick="showInfo('Inputs','Politisches System')">
-          <div class="dot"></div>
-          <span>Inputs</span>
-        </div>
-
-        <div class="station gray-text"
-          onclick="showInfo('Outputs','Politisches System')">
-          <div class="dot"></div>
-          <span>Outputs</span>
-        </div>
-
-        <div class="station gray-text"
-          onclick="showInfo('Politische Umwelt','Politisches System')">
-          <div class="dot"></div>
-          <span>Politische Umwelt</span>
-        </div>
-
-        <div class="station gray-text"
-          onclick="showInfo('Strukturen','Politisches System')">
-          <div class="dot"></div>
-          <span>Strukturen und Handlungsformen</span>
-        </div>
-      </div>
-
-    </section>
-
-    <!-- INFORMATIONSFENSTER -->
-
-    <section class="details" id="details">
-
-      <span class="tag">Informationsstation</span>
-
-      <h2 id="infoTitle">Willkommen!</h2>
-
-      <p id="infoCategory">
-        Wähle eine Haltestelle auf der Metrokarte.
+    <div
+      class="intro">
+      <h2>
+        Willkommen
+        an
+        Bord!
+      </h2>
+      <p>
+        Entdecke
+        das
+        politische
+        System
+        der
+        Schweiz.
+        Klicke
+        auf
+        eine
+        Haltestelle,
+        um
+        mehr
+        zu
+        erfahren.
       </p>
+    </div>
 
-      <div class="placeholder">
-        <p id="infoText">
-          Hier erscheinen ausführliche Erklärungen
-          zu den Institutionen, Akteuren und
-          politischen Prozessen der Schweiz.
+    <div
+      class="main">
+
+      <!-- U-BAHN-KARTE -->
+
+      <section
+        class="metro">
+
+        <h2>
+          🚇
+          Politische
+          Metro
+        </h2>
+
+        <!-- LEGISLATIVE -->
+
+        <div
+          class="line red">
+          <h3>
+            🔴
+            Legislative
+            –
+            Das
+            Parlament
+          </h3>
+
+          <div
+            class="station red-text"
+            onclick="showInfo('Nationalrat','Legislative')">
+            <div
+              class="dot">
+            </div>
+            <span>Nationalrat</span>
+          </div>
+
+          <div
+            class="station red-text"
+            onclick="showInfo('Ständerat','Legislative')">
+            <div
+              class="dot">
+            </div>
+            <span>Ständerat</span>
+          </div>
+
+          <div
+            class="station red-text"
+            onclick="showInfo('Gesetzesberatung','Legislative')">
+            <div
+              class="dot">
+            </div>
+            <span>Gesetzesberatung</span>
+          </div>
+
+          <div
+            class="station red-text"
+            onclick="showInfo('Gesetzesbeschluss','Legislative')">
+            <div
+              class="dot">
+            </div>
+            <span>Gesetzesbeschluss</span>
+          </div>
+
+          <div
+            class="station red-text"
+            onclick="showInfo('Interessenaggregation','Prozessfunktionen')">
+            <div
+              class="dot">
+            </div>
+            <span>Interessenaggregation</span>
+          </div>
+
+          <div
+            class="station red-text"
+            onclick="showInfo('Policy-making','Prozessfunktionen')">
+            <div
+              class="dot">
+            </div>
+            <span>Policy-making</span>
+          </div>
+        </div>
+
+        <!-- EXEKUTIVE -->
+
+        <div
+          class="line blue">
+          <h3>
+            🔵
+            Exekutive
+            –
+            Die
+            Regierung
+          </h3>
+
+          <div
+            class="station blue-text"
+            onclick="showInfo('Bundesrat','Exekutive')">
+            <div
+              class="dot">
+            </div>
+            <span>Bundesrat</span>
+          </div>
+
+          <div
+            class="station blue-text"
+            onclick="showInfo('Bundesverwaltung','Exekutive')">
+            <div
+              class="dot">
+            </div>
+            <span>Bundesverwaltung</span>
+          </div>
+
+          <div
+            class="station blue-text"
+            onclick="showInfo('Umsetzung der Gesetze','Exekutive')">
+            <div
+              class="dot">
+            </div>
+            <span>Gesetze
+              umsetzen</span>
+          </div>
+
+          <div
+            class="station blue-text"
+            onclick="showInfo('Botschaft Bundesrat','Politischer Entscheidungsprozess')">
+            <div
+              class="dot">
+            </div>
+            <span>Botschaft
+              BR</span>
+          </div>
+
+          <div
+            class="station blue-text"
+            onclick="showInfo('Implementierung','Prozessfunktionen')">
+            <div
+              class="dot">
+            </div>
+            <span>Implementierung</span>
+          </div>
+        </div>
+
+        <!-- JUDIKATIVE -->
+
+        <div
+          class="line green">
+          <h3>
+            🟢
+            Judikative
+            –
+            Die
+            Gerichte
+          </h3>
+
+          <div
+            class="station green-text"
+            onclick="showInfo('Kantonsgerichte','Judikative')">
+            <div
+              class="dot">
+            </div>
+            <span>Kantonsgerichte</span>
+          </div>
+
+          <div
+            class="station green-text"
+            onclick="showInfo('Bundesgericht','Judikative')">
+            <div
+              class="dot">
+            </div>
+            <span>Bundesgericht</span>
+          </div>
+
+          <div
+            class="station green-text"
+            onclick="showInfo('Überprüfung','Prozessfunktionen')">
+            <div
+              class="dot">
+            </div>
+            <span>Überprüfung
+              und
+              Rechtsprechung</span>
+          </div>
+        </div>
+
+        <!-- DIREKTE DEMOKRATIE -->
+
+        <div
+          class="line yellow">
+          <h3>
+            🟡
+            Direkte
+            Demokratie
+          </h3>
+
+          <div
+            class="station yellow-text"
+            onclick="showInfo('Volksinitiative','Direkte Demokratie')">
+            <div
+              class="dot">
+            </div>
+            <span>Volksinitiative</span>
+          </div>
+
+          <div
+            class="station yellow-text"
+            onclick="showInfo('Referendum','Direkte Demokratie')">
+            <div
+              class="dot">
+            </div>
+            <span>Referendum</span>
+          </div>
+
+          <div
+            class="station yellow-text"
+            onclick="showInfo('Volksabstimmung','Direkte Demokratie')">
+            <div
+              class="dot">
+            </div>
+            <span>Volksabstimmung</span>
+          </div>
+
+          <div
+            class="station yellow-text"
+            onclick="showInfo('Indirekter Gegenvorschlag','Direkte Demokratie')">
+            <div
+              class="dot">
+            </div>
+            <span>Indirekter
+              Gegenvorschlag</span>
+          </div>
+
+          <div
+            class="station yellow-text"
+            onclick="showInfo('Korrektur-Initiative','Direkte Demokratie')">
+            <div
+              class="dot">
+            </div>
+            <span>Korrektur-Initiative</span>
+          </div>
+
+          <div
+            class="station yellow-text"
+            onclick="showInfo('GSoA','Direkte Demokratie')">
+            <div
+              class="dot">
+            </div>
+            <span>GSoA</span>
+          </div>
+        </div>
+
+        <!-- FÖDERALISMUS -->
+
+        <div
+          class="line purple">
+          <h3>
+            🟣
+            Föderalismus
+          </h3>
+
+          <div
+            class="station purple-text"
+            onclick="showInfo('Bund','Föderalismus')">
+            <div
+              class="dot">
+            </div>
+            <span>Bund</span>
+          </div>
+
+          <div
+            class="station purple-text"
+            onclick="showInfo('Kantone','Föderalismus')">
+            <div
+              class="dot">
+            </div>
+            <span>Kantone</span>
+          </div>
+
+          <div
+            class="station purple-text"
+            onclick="showInfo('Gemeinden','Föderalismus')">
+            <div
+              class="dot">
+            </div>
+            <span>Gemeinden</span>
+          </div>
+        </div>
+
+        <!-- POLITISCHE AKTEURE -->
+
+        <div
+          class="line orange">
+          <h3>
+            🟠
+            Politische
+            Akteure
+            und
+            Interessen
+          </h3>
+
+          <div
+            class="station orange-text"
+            onclick="showInfo('Bürgerschaft','Politische Akteure')">
+            <div
+              class="dot">
+            </div>
+            <span>Bürgerschaft</span>
+          </div>
+
+          <div
+            class="station orange-text"
+            onclick="showInfo('Parteien','Politische Akteure')">
+            <div
+              class="dot">
+            </div>
+            <span>Parteien</span>
+          </div>
+
+          <div
+            class="station orange-text"
+            onclick="showInfo('Interessengruppen','Politische Akteure')">
+            <div
+              class="dot">
+            </div>
+            <span>Interessengruppen</span>
+          </div>
+
+          <div
+            class="station orange-text"
+            onclick="showInfo('Intermediäre Akteure','Politische Akteure')">
+            <div
+              class="dot">
+            </div>
+            <span>Intermediäre
+              Akteure</span>
+          </div>
+
+          <div
+            class="station orange-text"
+            onclick="showInfo('Medienberichte','Politische Akteure')">
+            <div
+              class="dot">
+            </div>
+            <span>Medien</span>
+          </div>
+
+          <div
+            class="station orange-text"
+            onclick="showInfo('Interessenartikulation','Prozessfunktionen')">
+            <div
+              class="dot">
+            </div>
+            <span>Interessenartikulation</span>
+          </div>
+        </div>
+
+        <!-- POLITISCHER ENTSCHEIDUNGSPROZESS -->
+
+        <div
+          class="line teal">
+          <h3>
+            ⚫
+            Politischer
+            Entscheidungsprozess
+          </h3>
+
+          <div
+            class="station teal-text"
+            onclick="showInfo('Motion SPK-SR','Politischer Entscheidungsprozess')">
+            <div
+              class="dot">
+            </div>
+            <span>Motion
+              SPK-SR</span>
+          </div>
+
+          <div
+            class="station teal-text"
+            onclick="showInfo('Beratung NR/SR','Politischer Entscheidungsprozess')">
+            <div
+              class="dot">
+            </div>
+            <span>Beratung
+              NR/SR</span>
+          </div>
+
+          <div
+            class="station teal-text"
+            onclick="showInfo('Stände- und Nationalrat','Politischer Entscheidungsprozess')">
+            <div
+              class="dot">
+            </div>
+            <span>Stände-
+              und
+              Nationalrat</span>
+          </div>
+
+          <div
+            class="station teal-text"
+            onclick="showInfo('Policy-making','Prozessfunktionen')">
+            <div
+              class="dot">
+            </div>
+            <span>Entscheidungsfindung</span>
+          </div>
+        </div>
+
+        <!-- INPUTS UND OUTPUTS -->
+
+        <div
+          class="line gray">
+          <h3>
+            ⚪
+            Politische
+            Umwelt
+            und
+            System
+          </h3>
+
+          <div
+            class="station gray-text"
+            onclick="showInfo('Inputs','Politisches System')">
+            <div
+              class="dot">
+            </div>
+            <span>Inputs</span>
+          </div>
+
+          <div
+            class="station gray-text"
+            onclick="showInfo('Outputs','Politisches System')">
+            <div
+              class="dot">
+            </div>
+            <span>Outputs</span>
+          </div>
+
+          <div
+            class="station gray-text"
+            onclick="showInfo('Politische Umwelt','Politisches System')">
+            <div
+              class="dot">
+            </div>
+            <span>Politische
+              Umwelt</span>
+          </div>
+
+          <div
+            class="station gray-text"
+            onclick="showInfo('Strukturen','Politisches System')">
+            <div
+              class="dot">
+            </div>
+            <span>Strukturen
+              und
+              Handlungsformen</span>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- INFORMATIONSFENSTER -->
+
+      <section
+        class="details"
+        id="details">
+
+        <span
+          class="tag">Informationsstation</span>
+
+        <h2
+          id="infoTitle">
+          Willkommen!
+        </h2>
+
+        <p
+          id="infoCategory">
+          Wähle
+          eine
+          Haltestelle
+          auf
+          der
+          Metrokarte.
         </p>
-      </div>
 
-    </section>
+        <div
+          class="placeholder">
+          <p
+            id="infoText">
+            Hier
+            erscheinen
+            ausführliche
+            Erklärungen
+            zu
+            den
+            Institutionen,
+            Akteuren
+            und
+            politischen
+            Prozessen
+            der
+            Schweiz.
+          </p>
+        </div>
 
-  </div>
-
-  <!-- POLITISCHER PROZESS ALS ABLAUF -->
-
-  <section class="process-info">
-
-    <h2>🔄 Der politische Prozess im Überblick</h2>
-
-    <p class="hint">
-      So gelangen gesellschaftliche Anliegen in das politische
-      System und werden zu politischen Entscheidungen.
-    </p>
-
-    <div class="process-flow">
-
-      <div class="process-step">
-        1. Interessenartikulation
-        <br><small>Anliegen ausdrücken</small>
-      </div>
-
-      <span class="arrow">→</span>
-
-      <div class="process-step">
-        2. Interessenaggregation
-        <br><small>Interessen bündeln</small>
-      </div>
-
-      <span class="arrow">→</span>
-
-      <div class="process-step">
-        3. Policy-making
-        <br><small>Entscheidungen treffen</small>
-      </div>
-
-      <span class="arrow">→</span>
-
-      <div class="process-step">
-        4. Implementierung
-        <br><small>Entscheidungen umsetzen</small>
-      </div>
-
-      <span class="arrow">→</span>
-
-      <div class="process-step">
-        5. Überprüfung
-        <br><small>Ergebnisse kontrollieren</small>
-      </div>
+      </section>
 
     </div>
 
-    <p class="hint">
-      <strong>Inputs:</strong> Forderungen, Wünsche und Probleme
-      aus der Bevölkerung und der politischen Umwelt.
-      <br>
-      <strong>Outputs:</strong> Politische Entscheidungen,
-      Gesetze und staatliche Massnahmen.
+    <!-- POLITISCHER PROZESS ALS ABLAUF -->
+
+    <section
+      class="process-info">
+
+      <h2>
+        🔄
+        Der
+        politische
+        Prozess
+        im
+        Überblick
+      </h2>
+
+      <p
+        class="hint">
+        So
+        gelangen
+        gesellschaftliche
+        Anliegen
+        in
+        das
+        politische
+        System
+        und
+        werden
+        zu
+        politischen
+        Entscheidungen.
+      </p>
+
+      <div
+        class="process-flow">
+
+        <div
+          class="process-step">
+          1.
+          Interessenartikulation
+          <br><small>Anliegen
+            ausdrücken</small>
+        </div>
+
+        <span
+          class="arrow">→</span>
+
+        <div
+          class="process-step">
+          2.
+          Interessenaggregation
+          <br><small>Interessen
+            bündeln</small>
+        </div>
+
+        <span
+          class="arrow">→</span>
+
+        <div
+          class="process-step">
+          3.
+          Policy-making
+          <br><small>Entscheidungen
+            treffen</small>
+        </div>
+
+        <span
+          class="arrow">→</span>
+
+        <div
+          class="process-step">
+          4.
+          Implementierung
+          <br><small>Entscheidungen
+            umsetzen</small>
+        </div>
+
+        <span
+          class="arrow">→</span>
+
+        <div
+          class="process-step">
+          5.
+          Überprüfung
+          <br><small>Ergebnisse
+            kontrollieren</small>
+        </div>
+
+      </div>
+
+      <p
+        class="hint">
+        <strong>Inputs:</strong>
+        Forderungen,
+        Wünsche
+        und
+        Probleme
+        aus
+        der
+        Bevölkerung
+        und
+        der
+        politischen
+        Umwelt.
+        <br>
+        <strong>Outputs:</strong>
+        Politische
+        Entscheidungen,
+        Gesetze
+        und
+        staatliche
+        Massnahmen.
+      </p>
+
+    </section>
+
+  </div>
+
+  <section
+    class="vote-section">
+
+    <h2>
+      🗳️
+      Jetzt
+      bist
+      du
+      an
+      der
+      Reihe!
+    </h2>
+
+    <p>
+      Du
+      hast
+      das
+      Schweizer
+      Politiksystem
+      kennengelernt.
+      Jetzt
+      kannst
+      du
+      selbst
+      abstimmen!
     </p>
+
+    <div
+      class="vote-card">
+
+      <span
+        class="tag">Simulierte
+        Volksabstimmung</span>
+
+      <h2>
+        Soll
+        der
+        Bund
+        den
+        öffentlichen
+        Verkehr
+        stärker
+        fördern?
+      </h2>
+
+      <p>
+        Entscheide
+        selbst.
+        Wähle
+        eine
+        Antwort
+        und
+        gib
+        deine
+        Stimme
+        ab.
+      </p>
+
+      <div
+        class="vote-options">
+
+        <label
+          class="vote-option">
+          <input
+            type="radio"
+            name="vote"
+            value="Ja">
+          <span>🟢
+            Ja</span>
+        </label>
+
+        <label
+          class="vote-option">
+          <input
+            type="radio"
+            name="vote"
+            value="Nein">
+          <span>🔴
+            Nein</span>
+        </label>
+
+        <label
+          class="vote-option">
+          <input
+            type="radio"
+            name="vote"
+            value="Enthaltung">
+          <span>⚪
+            Enthaltung</span>
+        </label>
+
+      </div>
+
+      <button
+        class="vote-button"
+        onclick="submitVote()">
+        Stimme
+        abgeben
+      </button>
+
+      <p
+        id="voteMessage">
+      </p>
+
+      <div
+        id="voteResults"
+        style="display:none;">
+
+        <h3>
+          📊
+          Abstimmungsresultat
+        </h3>
+
+        <div
+          class="result">
+          <span>Ja</span>
+          <div
+            class="bar">
+            <div
+              id="yesBar"
+              class="fill yes">
+            </div>
+          </div>
+          <strong
+            id="yesPercent">0%</strong>
+        </div>
+
+        <div
+          class="result">
+          <span>Nein</span>
+          <div
+            class="bar">
+            <div
+              id="noBar"
+              class="fill no">
+            </div>
+          </div>
+          <strong
+            id="noPercent">0%</strong>
+        </div>
+
+        <div
+          class="result">
+          <span>Enthaltung</span>
+          <div
+            class="bar">
+            <div
+              id="abstainBar"
+              class="fill abstain">
+            </div>
+          </div>
+          <strong
+            id="abstainPercent">0%</strong>
+        </div>
+
+        <h3
+          id="voteWinner">
+        </h3>
+
+        <p
+          class="hint">
+          Die
+          angezeigten
+          Ergebnisse
+          sind
+          eine
+          Simulation
+          und
+          keine
+          echten
+          Abstimmungsdaten.
+        </p>
+
+      </div>
+
+    </div>
 
   </section>
 
-</div>
+  <footer>
+    Schweizer
+    Politiksystem
+    · Eine
+    interaktive
+    Reise
+    durch
+    die
+    Demokratie
+    🇨🇭
+  </footer>
+
+  <script>
+
+    /* ERKLÄRUNGEN ZU ALLEN HALTESTELLEN */
+
+    const information = {
+
+      "Nationalrat": [
+        "Legislative",
+        "Der Nationalrat vertritt die Bevölkerung der Schweiz. Er hat 200 Mitglieder. Gemeinsam mit dem Ständerat bildet er die Bundesversammlung. Er berät und beschliesst Bundesgesetze."
+      ],
+
+      "Ständerat": [
+        "Legislative",
+        "Der Ständerat vertritt die Kantone. Er hat 46 Mitglieder. Zusammen mit dem Nationalrat bildet er die Bundesversammlung. Beide Räte müssen einem Gesetz zustimmen."
+      ],
+
+      "Gesetzesberatung": [
+        "Legislative",
+        "Im Parlament werden Gesetzesentwürfe diskutiert, verändert und beraten. Nationalrat und Ständerat beraten Vorlagen und versuchen, eine gemeinsame Fassung zu finden."
+      ],
+
+      "Gesetzesbeschluss": [
+        "Legislative",
+        "Ein Gesetz wird von Nationalrat und Ständerat beschlossen. Beide Räte müssen dem gleichen Gesetzestext zustimmen. Je nach Vorlage kann danach noch ein Referendum ergriffen werden."
+      ],
+
+      "Bundesrat": [
+        "Exekutive",
+        "Der Bundesrat ist die Regierung der Schweiz. Er besteht aus sieben Mitgliedern. Er leitet die Bundesverwaltung, setzt politische Schwerpunkte und sorgt für die Umsetzung der Bundesgesetze."
+      ],
+
+      "Bundesverwaltung": [
+        "Exekutive",
+        "Die Bundesverwaltung unterstützt den Bundesrat. Sie besteht aus Departementen und Ämtern. Sie bereitet politische Geschäfte vor und setzt Gesetze sowie Beschlüsse um."
+      ],
+
+      "Umsetzung der Gesetze": [
+        "Exekutive",
+        "Nach der Verabschiedung werden Gesetze durch die zuständigen Behörden umgesetzt. Die Verwaltung erlässt beispielsweise Verordnungen und organisiert die Durchführung."
+      ],
+
+      "Kantonsgerichte": [
+        "Judikative",
+        "Die Kantonsgerichte beurteilen Rechtsstreitigkeiten und Straftaten auf kantonaler Ebene. Sie sind Teil der kantonalen Justiz."
+      ],
+
+      "Bundesgericht": [
+        "Judikative",
+        "Das Bundesgericht ist das oberste Gericht der Schweiz. Es beurteilt Beschwerden gegen Entscheide der unteren Gerichte und sorgt für eine einheitliche Anwendung des Bundesrechts."
+      ],
+
+      "Überprüfung und Rechtsprechung": [
+        "Prozessfunktionen",
+        "Die Justiz überprüft rechtliche Streitigkeiten und wendet das geltende Recht an. Die politische Überprüfung umfasst ausserdem die Kontrolle, ob politische Massnahmen ihre Ziele erreichen."
+      ],
+
+      "Volksinitiative": [
+        "Direkte Demokratie",
+        "Mit einer Volksinitiative können Stimmberechtigte eine Änderung der Bundesverfassung verlangen. Dafür müssen innerhalb von 18 Monaten 100'000 gültige Unterschriften gesammelt werden."
+      ],
+
+      "Referendum": [
+        "Direkte Demokratie",
+        "Mit einem Referendum können Stimmberechtigte verlangen, dass über einen Beschluss des Parlaments abgestimmt wird. Beim fakultativen Referendum sind 50'000 Unterschriften oder acht Kantone erforderlich."
+      ],
+
+      "Volksabstimmung": [
+        "Direkte Demokratie",
+        "Bei einer Volksabstimmung entscheidet das Stimmvolk über politische Vorlagen. Bei Verfassungsänderungen braucht es das Volks- und Ständemehr."
+      ],
+
+      "Indirekter Gegenvorschlag": [
+        "Direkte Demokratie",
+        "Das Parlament kann einer Volksinitiative einen indirekten Gegenvorschlag gegenüberstellen. Dieser besteht in der Regel aus einem Gesetz und nicht aus einer Verfassungsänderung. Er kann in Kraft treten, wenn die Initiative zurückgezogen oder abgelehnt wird und die entsprechenden Bedingungen erfüllt sind."
+      ],
+
+      "Korrektur-Initiative": [
+        "Direkte Demokratie",
+        "Die Korrektur-Initiative war eine eidgenössische Volksinitiative mit dem Ziel, Waffenexporte in Bürgerkriegsländer stärker einzuschränken. Sie wollte strengere Exportkriterien in der Bundesverfassung verankern und damit die demokratische Kontrolle über Waffenexporte stärken."
+      ],
+
+      "GSoA": [
+        "Direkte Demokratie",
+        "Die GSoA ist die Gruppe für eine Schweiz ohne Armee. Sie ist eine politische Bewegung, die unter anderem durch Volksinitiativen und Referenden versucht, Einfluss auf die Schweizer Sicherheitspolitik zu nehmen."
+      ],
+
+      "Bund": [
+        "Föderalismus",
+        "Der Bund ist die nationale Staatsebene der Schweiz. Er übernimmt Aufgaben, die ihm durch die Bundesverfassung zugeteilt sind, beispielsweise die Aussenpolitik und die Landesverteidigung."
+      ],
+
+      "Kantone": [
+        "Föderalismus",
+        "Die Schweiz besteht aus 26 Kantonen. Sie verfügen über eigene Verfassungen, Parlamente, Regierungen und Gerichte. Sie übernehmen viele Aufgaben selbstständig."
+      ],
+
+      "Gemeinden": [
+        "Föderalismus",
+        "Die Gemeinden bilden die lokale Staatsebene. Sie übernehmen Aufgaben wie die lokale Infrastruktur, Schulen oder die Abfallentsorgung. Ihre Kompetenzen unterscheiden sich je nach Kanton."
+      ],
+
+      "Bürgerschaft": [
+        "Politische Akteure",
+        "Die Bürgerschaft umfasst die Bevölkerung. Stimmberechtigte können durch Wahlen, Abstimmungen, Initiativen und Referenden direkt Einfluss auf die Politik nehmen."
+      ],
+
+      "Parteien": [
+        "Politische Akteure",
+        "Politische Parteien vertreten unterschiedliche politische Interessen und Weltanschauungen. Sie stellen Kandidierende für Wahlen auf und wirken an der politischen Meinungs- und Entscheidungsbildung mit."
+      ],
+
+      "Interessengruppen": [
+        "Politische Akteure",
+        "Interessengruppen vertreten bestimmte Anliegen, beispielsweise von Unternehmen, Arbeitnehmern oder Umweltorganisationen. Sie versuchen, politische Entscheidungen zu beeinflussen."
+      ],
 
-<section class="vote-section">
+      "Intermediäre Akteure": [
+        "Politische Akteure",
+        "Intermediäre Akteure vermitteln zwischen Bevölkerung und politischem Entscheidungssystem. Dazu gehören beispielsweise Parteien, Verbände und Medien."
+      ],
 
-  <h2>🗳️ Jetzt bist du an der Reihe!</h2>
+      "Medienberichte": [
+        "Politische Akteure",
+        "Medien informieren die Bevölkerung über politische Themen, berichten über Entscheidungen und ermöglichen öffentliche Diskussionen. Sie beeinflussen damit die politische Meinungsbildung."
+      ],
 
-  <p>
-    Du hast das Schweizer Politiksystem kennengelernt.
-    Jetzt kannst du selbst abstimmen!
-  </p>
+      "Interessenartikulation": [
+        "Prozessfunktionen",
+        "Bei der Interessenartikulation bringen Einzelpersonen und Gruppen ihre Bedürfnisse, Probleme und Forderungen zum Ausdruck. Dies kann durch Petitionen, Demonstrationen, Medien oder politische Organisationen geschehen."
+      ],
 
-  <div class="vote-card">
+      "Interessenaggregation": [
+        "Prozessfunktionen",
+        "Bei der Interessenaggregation werden verschiedene gesellschaftliche Interessen gebündelt und miteinander abgestimmt. Parteien und Interessengruppen spielen dabei eine wichtige Rolle."
+      ],
 
-    <span class="tag">Simulierte Volksabstimmung</span>
+      "Policy-making": [
+        "Prozessfunktionen",
+        "Policy-making bezeichnet die politische Entscheidungsfindung. Dabei werden Probleme diskutiert, Lösungen entwickelt und politische Entscheidungen getroffen. Parlament und Regierung spielen eine zentrale Rolle."
+      ],
 
-    <h2>Soll der Bund den öffentlichen Verkehr stärker fördern?</h2>
+      "Implementierung": [
+        "Prozessfunktionen",
+        "Implementierung bedeutet die Umsetzung politischer Entscheidungen. Die Verwaltung und weitere zuständige Behörden sorgen dafür, dass beschlossene Gesetze und Massnahmen praktisch angewendet werden."
+      ],
 
-    <p>
-      Entscheide selbst. Wähle eine Antwort und gib
-      deine Stimme ab.
-    </p>
+      "Überprüfung": [
+        "Prozessfunktionen",
+        "Bei der Überprüfung wird untersucht, ob politische Entscheidungen und Massnahmen funktionieren und die gewünschten Ziele erreichen. Auch die rechtliche Kontrolle durch Gerichte ist ein wichtiger Bestandteil des politischen Systems."
+      ],
 
-    <div class="vote-options">
+      "Botschaft Bundesrat": [
+        "Politischer Entscheidungsprozess",
+        "Der Bundesrat erklärt in einer Botschaft an das Parlament seine Vorlage. Die Botschaft enthält die Ausgangslage, die Ziele, die vorgeschlagenen Regelungen und die Begründung."
+      ],
 
-      <label class="vote-option">
-        <input type="radio" name="vote" value="Ja">
-        <span>🟢 Ja</span>
-      </label>
+      "Motion SPK-SR": [
+        "Politischer Entscheidungsprozess",
+        "Eine Motion ist ein parlamentarischer Vorstoss. Sie beauftragt den Bundesrat, einen Entwurf für einen Erlass vorzulegen oder eine Massnahme zu treffen. SPK-SR steht für die Staatspolitische Kommission des Ständerates."
+      ],
 
-      <label class="vote-option">
-        <input type="radio" name="vote" value="Nein">
-        <span>🔴 Nein</span>
-      </label>
+      "Beratung NR/SR": [
+        "Politischer Entscheidungsprozess",
+        "NR steht für Nationalrat und SR für Ständerat. Die beiden Räte beraten politische Vorlagen. Sie diskutieren die Inhalte, können Änderungen vornehmen und müssen sich auf einen gemeinsamen Beschluss einigen."
+      ],
 
-      <label class="vote-option">
-        <input type="radio" name="vote" value="Enthaltung">
-        <span>⚪ Enthaltung</span>
-      </label>
+      "Stände- und Nationalrat": [
+        "Politischer Entscheidungsprozess",
+        "Nationalrat und Ständerat bilden gemeinsam die Bundesversammlung. Sie vertreten die Bevölkerung beziehungsweise die Kantone und beschliessen gemeinsam Bundesgesetze."
+      ],
 
-    </div>
+      "Inputs": [
+        "Politisches System",
+        "Inputs sind Forderungen, Anliegen, Probleme und Erwartungen aus der Gesellschaft. Sie gelangen beispielsweise durch Bürgerinnen und Bürger, Parteien, Interessengruppen oder Medien in das politische System."
+      ],
 
-    <button class="vote-button" onclick="submitVote()">
-      Stimme abgeben
-    </button>
+      "Outputs": [
+        "Politisches System",
+        "Outputs sind die Ergebnisse politischer Entscheidungsprozesse. Dazu gehören Gesetze, Verordnungen, politische Beschlüsse und staatliche Massnahmen."
+      ],
 
-    <p id="voteMessage"></p>
+      "Politische Umwelt": [
+        "Politisches System",
+        "Die politische Umwelt umfasst gesellschaftliche, wirtschaftliche, kulturelle und internationale Einflüsse. Sie beeinflusst, welche Probleme politisch wichtig werden und welche Entscheidungen getroffen werden."
+      ],
 
-    <div id="voteResults" style="display:none;">
+      "Strukturen": [
+        "Politisches System",
+        "Politische Strukturen umfassen die Akteure, Institutionen und Handlungsformen eines politischen Systems. Dazu gehören beispielsweise Parlament, Regierung, Verwaltung, Parteien und Interessengruppen."
+      ]
 
-      <h3>📊 Abstimmungsresultat</h3>
+    };
 
-      <div class="result">
-        <span>Ja</span>
-        <div class="bar">
-          <div id="yesBar" class="fill yes"></div>
-        </div>
-        <strong id="yesPercent">0%</strong>
-      </div>
 
-      <div class="result">
-        <span>Nein</span>
-        <div class="bar">
-          <div id="noBar" class="fill no"></div>
-        </div>
-        <strong id="noPercent">0%</strong>
-      </div>
+    /* INFORMATIONSFENSTER AKTUALISIEREN */
 
-      <div class="result">
-        <span>Enthaltung</span>
-        <div class="bar">
-          <div id="abstainBar" class="fill abstain"></div>
-        </div>
-        <strong id="abstainPercent">0%</strong>
-      </div>
+    function showInfo(title, category) {
 
-      <h3 id="voteWinner"></h3>
+      const details = information[title];
 
-      <p class="hint">
-        Die angezeigten Ergebnisse sind eine
-        Simulation und keine echten Abstimmungsdaten.
-      </p>
-
-    </div>
+      document.getElementById("infoTitle").textContent = title;
 
-  </div>
-
-</section>
-
-<footer>
-  Schweizer Politiksystem · Eine interaktive Reise durch die Demokratie 🇨🇭
-</footer>
-
-<script>
-
-/* ERKLÄRUNGEN ZU ALLEN HALTESTELLEN */
-
-const information = {
-
-  "Nationalrat": [
-    "Legislative",
-    "Der Nationalrat vertritt die Bevölkerung der Schweiz. Er hat 200 Mitglieder. Gemeinsam mit dem Ständerat bildet er die Bundesversammlung. Er berät und beschliesst Bundesgesetze."
-  ],
-
-  "Ständerat": [
-    "Legislative",
-    "Der Ständerat vertritt die Kantone. Er hat 46 Mitglieder. Zusammen mit dem Nationalrat bildet er die Bundesversammlung. Beide Räte müssen einem Gesetz zustimmen."
-  ],
-
-  "Gesetzesberatung": [
-    "Legislative",
-    "Im Parlament werden Gesetzesentwürfe diskutiert, verändert und beraten. Nationalrat und Ständerat beraten Vorlagen und versuchen, eine gemeinsame Fassung zu finden."
-  ],
-
-  "Gesetzesbeschluss": [
-    "Legislative",
-    "Ein Gesetz wird von Nationalrat und Ständerat beschlossen. Beide Räte müssen dem gleichen Gesetzestext zustimmen. Je nach Vorlage kann danach noch ein Referendum ergriffen werden."
-  ],
-
-  "Bundesrat": [
-    "Exekutive",
-    "Der Bundesrat ist die Regierung der Schweiz. Er besteht aus sieben Mitgliedern. Er leitet die Bundesverwaltung, setzt politische Schwerpunkte und sorgt für die Umsetzung der Bundesgesetze."
-  ],
-
-  "Bundesverwaltung": [
-    "Exekutive",
-    "Die Bundesverwaltung unterstützt den Bundesrat. Sie besteht aus Departementen und Ämtern. Sie bereitet politische Geschäfte vor und setzt Gesetze sowie Beschlüsse um."
-  ],
-
-  "Umsetzung der Gesetze": [
-    "Exekutive",
-    "Nach der Verabschiedung werden Gesetze durch die zuständigen Behörden umgesetzt. Die Verwaltung erlässt beispielsweise Verordnungen und organisiert die Durchführung."
-  ],
-
-  "Kantonsgerichte": [
-    "Judikative",
-    "Die Kantonsgerichte beurteilen Rechtsstreitigkeiten und Straftaten auf kantonaler Ebene. Sie sind Teil der kantonalen Justiz."
-  ],
-
-  "Bundesgericht": [
-    "Judikative",
-    "Das Bundesgericht ist das oberste Gericht der Schweiz. Es beurteilt Beschwerden gegen Entscheide der unteren Gerichte und sorgt für eine einheitliche Anwendung des Bundesrechts."
-  ],
-
-  "Überprüfung und Rechtsprechung": [
-    "Prozessfunktionen",
-    "Die Justiz überprüft rechtliche Streitigkeiten und wendet das geltende Recht an. Die politische Überprüfung umfasst ausserdem die Kontrolle, ob politische Massnahmen ihre Ziele erreichen."
-  ],
-
-  "Volksinitiative": [
-    "Direkte Demokratie",
-    "Mit einer Volksinitiative können Stimmberechtigte eine Änderung der Bundesverfassung verlangen. Dafür müssen innerhalb von 18 Monaten 100'000 gültige Unterschriften gesammelt werden."
-  ],
-
-  "Referendum": [
-    "Direkte Demokratie",
-    "Mit einem Referendum können Stimmberechtigte verlangen, dass über einen Beschluss des Parlaments abgestimmt wird. Beim fakultativen Referendum sind 50'000 Unterschriften oder acht Kantone erforderlich."
-  ],
-
-  "Volksabstimmung": [
-    "Direkte Demokratie",
-    "Bei einer Volksabstimmung entscheidet das Stimmvolk über politische Vorlagen. Bei Verfassungsänderungen braucht es das Volks- und Ständemehr."
-  ],
-
-  "Indirekter Gegenvorschlag": [
-    "Direkte Demokratie",
-    "Das Parlament kann einer Volksinitiative einen indirekten Gegenvorschlag gegenüberstellen. Dieser besteht in der Regel aus einem Gesetz und nicht aus einer Verfassungsänderung. Er kann in Kraft treten, wenn die Initiative zurückgezogen oder abgelehnt wird und die entsprechenden Bedingungen erfüllt sind."
-  ],
-
-  "Korrektur-Initiative": [
-    "Direkte Demokratie",
-    "Eine Korrektur-Initiative ist eine Volksinitiative, mit der eine bestehende politische Regelung oder Entscheidung verändert werden soll. Sie gehört zu den Möglichkeiten der direkten politischen Einflussnahme."
-  ],
-
-  "GSoA": [
-    "Direkte Demokratie",
-    "Die GSoA ist die Gruppe für eine Schweiz ohne Armee. Sie ist eine politische Bewegung, die unter anderem durch Volksinitiativen und Referenden versucht, Einfluss auf die Schweizer Sicherheitspolitik zu nehmen."
-  ],
-
-  "Bund": [
-    "Föderalismus",
-    "Der Bund ist die nationale Staatsebene der Schweiz. Er übernimmt Aufgaben, die ihm durch die Bundesverfassung zugeteilt sind, beispielsweise die Aussenpolitik und die Landesverteidigung."
-  ],
-
-  "Kantone": [
-    "Föderalismus",
-    "Die Schweiz besteht aus 26 Kantonen. Sie verfügen über eigene Verfassungen, Parlamente, Regierungen und Gerichte. Sie übernehmen viele Aufgaben selbstständig."
-  ],
-
-  "Gemeinden": [
-    "Föderalismus",
-    "Die Gemeinden bilden die lokale Staatsebene. Sie übernehmen Aufgaben wie die lokale Infrastruktur, Schulen oder die Abfallentsorgung. Ihre Kompetenzen unterscheiden sich je nach Kanton."
-  ],
-
-  "Bürgerschaft": [
-    "Politische Akteure",
-    "Die Bürgerschaft umfasst die Bevölkerung. Stimmberechtigte können durch Wahlen, Abstimmungen, Initiativen und Referenden direkt Einfluss auf die Politik nehmen."
-  ],
-
-  "Parteien": [
-    "Politische Akteure",
-    "Politische Parteien vertreten unterschiedliche politische Interessen und Weltanschauungen. Sie stellen Kandidierende für Wahlen auf und wirken an der politischen Meinungs- und Entscheidungsbildung mit."
-  ],
-
-  "Interessengruppen": [
-    "Politische Akteure",
-    "Interessengruppen vertreten bestimmte Anliegen, beispielsweise von Unternehmen, Arbeitnehmern oder Umweltorganisationen. Sie versuchen, politische Entscheidungen zu beeinflussen."
-  ],
-
-  "Intermediäre Akteure": [
-    "Politische Akteure",
-    "Intermediäre Akteure vermitteln zwischen Bevölkerung und politischem Entscheidungssystem. Dazu gehören beispielsweise Parteien, Verbände und Medien."
-  ],
-
-  "Medienberichte": [
-    "Politische Akteure",
-    "Medien informieren die Bevölkerung über politische Themen, berichten über Entscheidungen und ermöglichen öffentliche Diskussionen. Sie beeinflussen damit die politische Meinungsbildung."
-  ],
-
-  "Interessenartikulation": [
-    "Prozessfunktionen",
-    "Bei der Interessenartikulation bringen Einzelpersonen und Gruppen ihre Bedürfnisse, Probleme und Forderungen zum Ausdruck. Dies kann durch Petitionen, Demonstrationen, Medien oder politische Organisationen geschehen."
-  ],
-
-  "Interessenaggregation": [
-    "Prozessfunktionen",
-    "Bei der Interessenaggregation werden verschiedene gesellschaftliche Interessen gebündelt und miteinander abgestimmt. Parteien und Interessengruppen spielen dabei eine wichtige Rolle."
-  ],
-
-  "Policy-making": [
-    "Prozessfunktionen",
-    "Policy-making bezeichnet die politische Entscheidungsfindung. Dabei werden Probleme diskutiert, Lösungen entwickelt und politische Entscheidungen getroffen. Parlament und Regierung spielen eine zentrale Rolle."
-  ],
-
-  "Implementierung": [
-    "Prozessfunktionen",
-    "Implementierung bedeutet die Umsetzung politischer Entscheidungen. Die Verwaltung und weitere zuständige Behörden sorgen dafür, dass beschlossene Gesetze und Massnahmen praktisch angewendet werden."
-  ],
-
-  "Überprüfung": [
-    "Prozessfunktionen",
-    "Bei der Überprüfung wird untersucht, ob politische Entscheidungen und Massnahmen funktionieren und die gewünschten Ziele erreichen. Auch die rechtliche Kontrolle durch Gerichte ist ein wichtiger Bestandteil des politischen Systems."
-  ],
-
-  "Botschaft Bundesrat": [
-    "Politischer Entscheidungsprozess",
-    "Der Bundesrat erklärt in einer Botschaft an das Parlament seine Vorlage. Die Botschaft enthält die Ausgangslage, die Ziele, die vorgeschlagenen Regelungen und die Begründung."
-  ],
-
-  "Motion SPK-SR": [
-    "Politischer Entscheidungsprozess",
-    "Eine Motion ist ein parlamentarischer Vorstoss. Sie beauftragt den Bundesrat, einen Entwurf für einen Erlass vorzulegen oder eine Massnahme zu treffen. SPK-SR steht für die Staatspolitische Kommission des Ständerates."
-  ],
-
-  "Beratung NR/SR": [
-    "Politischer Entscheidungsprozess",
-    "NR steht für Nationalrat und SR für Ständerat. Die beiden Räte beraten politische Vorlagen. Sie diskutieren die Inhalte, können Änderungen vornehmen und müssen sich auf einen gemeinsamen Beschluss einigen."
-  ],
-
-  "Stände- und Nationalrat": [
-    "Politischer Entscheidungsprozess",
-    "Nationalrat und Ständerat bilden gemeinsam die Bundesversammlung. Sie vertreten die Bevölkerung beziehungsweise die Kantone und beschliessen gemeinsam Bundesgesetze."
-  ],
-
-  "Inputs": [
-    "Politisches System",
-    "Inputs sind Forderungen, Anliegen, Probleme und Erwartungen aus der Gesellschaft. Sie gelangen beispielsweise durch Bürgerinnen und Bürger, Parteien, Interessengruppen oder Medien in das politische System."
-  ],
-
-  "Outputs": [
-    "Politisches System",
-    "Outputs sind die Ergebnisse politischer Entscheidungsprozesse. Dazu gehören Gesetze, Verordnungen, politische Beschlüsse und staatliche Massnahmen."
-  ],
-
-  "Politische Umwelt": [
-    "Politisches System",
-    "Die politische Umwelt umfasst gesellschaftliche, wirtschaftliche, kulturelle und internationale Einflüsse. Sie beeinflusst, welche Probleme politisch wichtig werden und welche Entscheidungen getroffen werden."
-  ],
-
-  "Strukturen": [
-    "Politisches System",
-    "Politische Strukturen umfassen die Akteure, Institutionen und Handlungsformen eines politischen Systems. Dazu gehören beispielsweise Parlament, Regierung, Verwaltung, Parteien und Interessengruppen."
-  ]
-
-};
-
-
-/* INFORMATIONSFENSTER AKTUALISIEREN */
-
-function showInfo(title, category) {
-
-  const details = information[title];
-
-  document.getElementById("infoTitle").textContent = title;
-
-  if (details) {
-
-    document.getElementById("infoCategory").textContent =
-      "Bereich: " + details[0];
-
-    document.getElementById("infoText").textContent =
-      details[1];
-
-  } else {
-
-    document.getElementById("infoCategory").textContent =
-      "Bereich: " + category;
-
-    document.getElementById("infoText").textContent =
-      "Zu dieser Station gibt es noch keine Erklärung.";
-
-  }
-
-  document.getElementById("details").scrollIntoView({
-    behavior: "smooth",
-    block: "nearest"
-  });
-
-}
-
-function submitVote() {
-
-  const selected = document.querySelector(
-    'input[name="vote"]:checked'
-  );
-
-  if (!selected) {
-    document.getElementById("voteMessage").textContent =
-      "Bitte wähle zuerst eine Antwort aus!";
-    return;
-  }
-
-  const vote = selected.value;
-
-  // Beispielwerte für die simulierte Abstimmung
-  const results = {
-    Ja: 58,
-    Nein: 32,
-    Enthaltung: 10
-  };
-
-  document.getElementById("voteMessage").textContent =
-    "Danke! Deine Stimme für " + vote +
-    " wurde in dieser Simulation registriert.";
-
-  // Abstimmungsergebnisse anzeigen
-  document.getElementById("voteResults").style.display =
-    "block";
-
-  document.getElementById("yesPercent").textContent =
-    results.Ja + "%";
-
-  document.getElementById("noPercent").textContent =
-    results.Nein + "%";
-
-  document.getElementById("abstainPercent").textContent =
-    results.Enthaltung + "%";
-
-  // Balken animieren
-  setTimeout(() => {
-
-    document.getElementById("yesBar").style.width =
-      results.Ja + "%";
-
-    document.getElementById("noBar").style.width =
-      results.Nein + "%";
-
-    document.getElementById("abstainBar").style.width =
-      results.Enthaltung + "%";
-
-  }, 100);
-
-  document.getElementById("voteWinner").textContent =
-    results.Ja > results.No
-      ? "🟢 Die Ja-Stimmen haben die Mehrheit!"
-      : "🔴 Die Nein-Stimmen haben die Mehrheit!";
-
-  // Mehrfachabstimmung verhindern
-  document.querySelectorAll(
-    'input[name="vote"]'
-  ).forEach(input => input.disabled = true);
-
-  document.querySelector(".vote-button").disabled = true;
-}
-
-</script>
+      if (details) {
+
+        document.getElementById("infoCategory").textContent =
+          "Bereich: " + details[0];
+
+        document.getElementById("infoText").textContent =
+          details[1];
+
+      } else {
+
+        document.getElementById("infoCategory").textContent =
+          "Bereich: " + category;
+
+        document.getElementById("infoText").textContent =
+          "Zu dieser Station gibt es noch keine Erklärung.";
+
+      }
+
+      document.getElementById("details").scrollIntoView({
+        behavior: "smooth",
+        block: "nearest"
+      });
+
+    }
+
+    function submitVote() {
+
+      const selected = document.querySelector(
+        'input[name="vote"]:checked'
+      );
+
+      if (!selected) {
+        document.getElementById("voteMessage").textContent =
+          "Bitte wähle zuerst eine Antwort aus!";
+        return;
+      }
+
+      const vote = selected.value;
+
+      // Beispielwerte für die simulierte Abstimmung
+      const results = {
+        Ja: 32,
+        Nein: 58,
+        Enthaltung: 10
+      };
+
+      document.getElementById("voteMessage").textContent =
+        "Danke! Deine Stimme für " + vote +
+        " wurde in dieser Simulation registriert.";
+
+      // Abstimmungsergebnisse anzeigen
+      document.getElementById("voteResults").style.display =
+        "block";
+
+      document.getElementById("yesPercent").textContent =
+        results.Ja + "%";
+
+      document.getElementById("noPercent").textContent =
+        results.Nein + "%";
+
+      document.getElementById("abstainPercent").textContent =
+        results.Enthaltung + "%";
+
+      // Balken animieren
+      setTimeout(() => {
+
+        document.getElementById("yesBar").style.width =
+          results.Ja + "%";
+
+        document.getElementById("noBar").style.width =
+          results.Nein + "%";
+
+        document.getElementById("abstainBar").style.width =
+          results.Enthaltung + "%";
+
+      }, 100);
+
+      document.getElementById("voteWinner").textContent =
+        results.Ja > results.No
+          ? "🟢 Die Ja-Stimmen haben die Mehrheit!"
+          : "🔴 Die Nein-Stimmen haben die Mehrheit!";
+
+      // Mehrfachabstimmung verhindern
+      document.querySelectorAll(
+        'input[name="vote"]'
+      ).forEach(input => input.disabled = true);
+
+      document.querySelector(".vote-button").disabled = true;
+    }
+
+  </script>
 
 </body>
+
 </html>
